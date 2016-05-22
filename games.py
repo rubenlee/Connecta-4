@@ -1,10 +1,10 @@
 """Games, or Adversarial Search. (Chapters 6)
 
 """
-
 import heu
 from utils import *
 import random
+heuristica = None
 #______________________________________________________________________________
 # Minimax Search
 
@@ -37,18 +37,6 @@ def minimax_decision(state, game):
 
 
 #______________________________________________________________________________
-
-#heur=heuristica.heuristicah0
-def def_heur(heuristic):
-    global heur
-    #if(heuristic==1):
-        #heur=heuristica.heuristicah0
-    #elif(heuristic==2):
-        #heur=heuristica.heuristicah1
-    #else:
-        #heur=heuristica.heuristicah2
-    #print heur
-    return
 
 def alphabeta_full_search(state, game):
     """Search game to determine best action; use alpha-beta pruning.
@@ -83,10 +71,21 @@ def alphabeta_full_search(state, game):
                            lambda ((a, s)): min_value(s, -infinity, infinity))
     return action
 
-def alphabeta_search(state, game, d=4, cutoff_test=None, eval_fn=heu.heuristica):
+def difficulty(dif):
+    global heuristica
+    if dif == 1:
+        heuristica=heu.easy
+    elif dif == 2:
+        heuristica=heu.medium
+    else:
+        heuristica=heu.hard
+    print heuristica
+
+def alphabeta_search(state, game, d=4, cutoff_test=None, eval_fn=None):
     """Search game to determine best action; use alpha-beta pruning.
     This version cuts off search and uses an evaluation function."""
     player = game.to_move(state)
+    eval_fn = heuristica
     def max_value(state, alpha, beta, depth):
         if cutoff_test(state, depth):
             return eval_fn(state)

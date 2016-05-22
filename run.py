@@ -5,6 +5,14 @@ state = game.initial
 #print games.play_game(game, games.random_player, games.alphabeta_player)
 
 while(True):
+    dificultad = input("Dificultades posibles: \n1)facil\n2)intermedio\n3)Dificil\nQue dificultad desea:")
+    if dificultad > 3 or dificultad < 1:
+        print("Opcion no valida")
+    else:
+        games.difficulty(dificultad)
+        break;
+
+while(True):
     jugador = input("Desea empezar(1) o que la maquina empiece(2):")
     if jugador == 1:
         game.initial.to_move = 'O'
