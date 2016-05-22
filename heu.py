@@ -4,10 +4,8 @@ def easy(state):
     return random.randint(0,100)
 
 def medium(state):
-    if state.utility == 1:
-        return 10000
-    elif state.utility == -1:
-        return -10000
+    if state.utility != 0:
+        return state.utility * 10000
     else:
         return random.randint(0,100)
 
