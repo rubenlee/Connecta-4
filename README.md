@@ -1,29 +1,30 @@
 # Conecta 4
 ##Autores
-*Ruben Javier Lee Ramirez
+* Ruben Javier Lee Ramirez
 
-*Eloy Pérez Reyes
-##Introduccion
-En este trabajo se ha de aplicar una heuristica que realice el correcto funcionamiento de una inteligencia artificial en el juego de conecta en 4.
+* Eloy Pérez Reyes
+##Introducción
+En este trabajo se ha de aplicar una heurística que realice el correcto funcionamiento de una inteligencia artificial en el juego de conecta en 4.
 
-##Realizacion
-Para las actividades basicas primero modificaremos **run.py**:  
+##Realización
+Para las actividades básicas primero modificaremos **run.py**:  
 ```{language:Python}
     dificultad = input ("Que dificultad desea:")
 ```
-  *La forma de determinar la dificultad se basa en guardar en una variable un nùmero delimitado que sera el factor de la profundidad en la busqueda.
+  *La forma de determinar la dificultad se basa en guardar en una variable un número delimitado que será el factor de la profundidad en la búsqueda.
 ```{language:Python}
      jugador = input("Desea empezar(1) o que la maquina empiece(2):")
     if jugador == 1:
         game.initial.to_move = 'O'
         player = 'O'
 ```
-  *En respecto a la desición de quien comienza se hace una comprobación sencilla dependiendo del valor recibido.
+  *En respecto a la decisión de quien comienza se hace una comprobación sencilla dependiendo del valor recibido.
 ```{language:Python}
     move = games.alphabeta_search(state, game, dificultad)
 ```
-  La ultima modificación hecha trata en añadir el tercer parametro que es la que decidira el limite de profundidad.
-Otro archivo a modificar ha sido **game.py**, sin embargo lo único cambiado ha sido la linea de definición de la busqueda.
+  *La última modificación hecha trata en añadir el tercer parámetro que es la que decidirá el límite de profundidad.
+Otro archivo a modificar ha sido **game.py**, sin embargo, lo único cambiado ha sido la línea de definición de la búsqueda.
+
 ```{language:Python}
     def alphabeta_search(state, game, d, cutoff_test=None, eval_fn=heu.heuristica):
 ```
