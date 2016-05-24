@@ -1,61 +1,40 @@
-import random
-
-def easy(state):
-    return random.randint(0,100)
-
-def medium(state):
+def heuristica(state):
+    n = 0
     if state.utility != 0:
         return state.utility * 10000
     else:
-        return random.randint(0,100)
-
-def hard(state):
-    if state.utility != 0:
-        return state.utility * 10000
-    n = 0
-    for move in state.moves:
-        if state.to_move == 'O':
-            n += value(state.board, move, 'O')
-        if state.to_move == 'X':
-            n -= value(state.board, move, 'X')
-    return n
+        for move in state.moves:
+            n -= value(state.board, move, 'O')
+            n += value(state.board, move, 'X')
+        return n
 
 
 def value(board, move, player):
     n= (k_in_row(board, move, player, (0, 1)) +
         k_in_row(board, move, player, (1, 0)) +
-        k_in_row(board, move, player, (-1, -1)) +
-        k_in_row(board, move, player, (1, 1)))
+        k_in_row(board, move, player, (1, 1)) +
+        k_in_row(board, move, player, (-1, -1)))
     return n
 
-
-def k_in_row( board, move, player, (delta_x, delta_y)):
-    distance = 1
+def k_in_row(board, move, player, (delta_x, delta_y)):
     x, y = move
-    h = 0
-    while x < 7 and y < 6 and x > 0 and y > 0:
-        if board.get((x, y)) == player:
-            h += 10 / distance
-        if board.get((x, y)) == None:
-            h += 5 / distance
-        else:
-            break
+    n = 0  # n is number of moves in row
+    while board.get((x, y)) == player or board.get((x, y)) ==  None:
+        if (board.get((x, y), '.') == player):
+            n += 1
         x, y = x + delta_x, y + delta_y
-        distance += 1
+        if x > 7 or x < 0 or y > 6 or y < 0:
+            break
     x, y = move
-    while x < 7 and y < 6 and x > 0 and y > 0:
-        if board.get((x, y)) == player:
-            h += 10 / distance
-        if board.get((x, y)) == None:
-            h += 5 / distance
+    while board.get((x, y)) == player or board.get((x, y)) == None:
+        if (board.get((x, y)) == player):
+            n += 1
         x, y = x - delta_x, y - delta_y
-        distance += 1
+        if x > 7 or x < 0 or y > 6 or y < 0:
+            break
 
-        # Because we counted move itself twice
-    return h
-
-
-
+     # Because we counted move itself twice
+    return n
 
 
 
