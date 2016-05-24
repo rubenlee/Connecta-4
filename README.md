@@ -1,8 +1,8 @@
 # Conecta 4
 ##Autores
 * Ruben Javier Lee Ramirez
-
 * Eloy Pérez Reyes
+
 ##Introducción
 En este trabajo se ha de aplicar una heurística que realice el correcto funcionamiento de una inteligencia artificial en el juego de conecta en 4.
 
