@@ -5,13 +5,14 @@ state = game.initial
 #print games.play_game(game, games.random_player, games.alphabeta_player)
 
 while(True):
-    dificultad = input("Dificultades posibles: \n1)facil\n2)intermedio\n3)Dificil\nQue dificultad desea:")
-    if dificultad > 3 or dificultad < 1:
+    print("Dificultades posibles: \n  facil               intermedio              Dificil")
+    print("    1                     2                      3")
+    dificultad = input ("Que dificultad desea:")
+    if dificultad > 6 or dificultad < 1:
         print("Opcion no valida")
     else:
-        games.difficulty(dificultad)
-        break;
-
+        dificultad += 1
+        break
 while(True):
     jugador = input("Desea empezar(1) o que la maquina empiece(2):")
     if jugador == 1:
@@ -19,7 +20,6 @@ while(True):
         player = 'O'
         break
     elif jugador == 2:
-        game.initial.to_move
         game.initial.to_move = 'X'
         player = 'X'
         break
@@ -46,7 +46,7 @@ while True:
         print "Thinking..."
         #move = games.minimax_decision(state, game)
         #move = games.alphabeta_full_search(state, game)
-        move = games.alphabeta_search(state, game)
+        move = games.alphabeta_search(state, game, dificultad)
 
         state = game.make_move(move, state)
         player = 'O'
