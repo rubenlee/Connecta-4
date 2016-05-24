@@ -28,9 +28,9 @@ Otro archivo a modificar ha sido **game.py**, sin embargo, lo único cambiado ha
 ```{language:Python}
     def alphabeta_search(state, game, d, cutoff_test=None, eval_fn=heu.heuristica):
 ```
-  En lo que se modificaron los parametros que reciben *d* y *eval_fn*
+  En lo que se modificaron los parámetros que reciben *d* y *eval_fn*
   
-Para la creación de la heuristica se procede a crear otro archivo llamado **heu.py**. Este archivo sigue el mismo principio que esta en **game.py** sobre la deteccion de lineas en su codigo adicional del 3 en raya, pero como no sigue la mismas reglas comparado con conecta 4 ajusta el codigo a él.
+Para la creación de la heurística se procede a crear otro archivo llamado **heu.py**. Este archivo sigue el mismo principio que está en **game.py** sobre la detección de líneas en su código adicional del 3 en raya, pero como no sigue la misma regla comparado con conecta 4 ajusta el código a él.
 ```{language:Python}
     def heuristica(state):
     n = 0
@@ -42,7 +42,7 @@ Para la creación de la heuristica se procede a crear otro archivo llamado **heu
             n += value(state.board, move, 'X')
         return n
 ```
-  En primer lugar se comprueba si el estado actual hay posibilidad de que se pierda/gane la partida comprobando el atributo de utility que te devolvera 1 o -1 en sus respectivos caso. En caso de que no este en un movimiento definitivo se comprueba si es posible formar lineas para cada jugador,O para el humano y X para la computadora. 
+  En primer lugar, se comprueba si el estado actual hay posibilidad de que se pierda/gane la partida comprobando el atributo de *utility* que te devolverá 1 o -1 en sus respectivos casos. En caso de que no esté en un movimiento definitivo se comprueba si es posible formar líneas para cada jugador, O para el humano y X para la computadora.
 ```{language:Python}
     def value(board, move, player):
     n= (k_in_row(board, move, player, (0, 1)) +
@@ -51,7 +51,7 @@ Para la creación de la heuristica se procede a crear otro archivo llamado **heu
         k_in_row(board, move, player, (-1, -1)))
     return n
 ```
-  Como el conecta en 4 se pueden formar mas de una linea y se pueden generar mas de una linea comparado con el 3 en raya se comprueba en todas las lineas posibles en ese punto y se hace un sumatorio aumentando el valor de la heuristica, o si en la instancia del jugador disminuira la heuristica.
+  Como el conecta en 4 se pueden formar más de una línea y se pueden generar más de una línea comparado con el 3 en raya se comprueba en todas las líneas posibles en ese punto y se hace un sumatorio aumentando el valor de la heurística, o si en la instancia del jugador disminuirá la heurística.
 ```{language:Python}
     def k_in_row(board, move, player, (delta_x, delta_y)):
     x, y = move
@@ -73,6 +73,7 @@ Para la creación de la heuristica se procede a crear otro archivo llamado **heu
      # Because we counted move itself twice
     return n
 ```
-Y por ultimo el valor heurístico se obtiene como se menciono antes mediante comprobacion de todas las rectas posibles en un punto, si sale de las dimensiones del tablero para la iteracción. Se hacen dos bucles para comprobar ambos extremos de la recta.
+Y por último el valor heurístico se obtiene como se mencionó antes mediante comprobación de todas las rectas posibles en un punto, si sale de las dimensiones del tablero para la iteración. Se hacen dos bucles para comprobar ambos extremos de la recta.
 ## Conclusión
-La heuristica a mayor profundida tiene un tiempo mayor de proceso pero a la vez mayor dificultad pues llega a calcular una gran cantidad de posibilidades y elige la mejor
+La heurística a mayor profundidad tiene un tiempo mayor de proceso, pero a la vez mayor dificultad pues llega a calcular una gran cantidad de posibilidades y elige la mejor
+
